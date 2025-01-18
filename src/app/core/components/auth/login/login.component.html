@@ -1,0 +1,36 @@
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center">
+        <div style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 100%, rgba(33, 150, 243, 0) 100%);">
+            <div class="w-full surface-card py-4 px-5 sm:px-8" style="border-radius:53px">
+                <div class="text-center mb-2">
+                    <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logofarmacia' : 'logofarmacia'}}.png" alt="Image" height="250" class="mb-1">
+                    <!-- <div class="text-900 text-3xl font-medium mb-3">{{tittle}}</div> -->
+                </div>
+
+                <div>
+                    <input id="email1" type="text" [(ngModel)]="email" placeholder="Usuario" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
+
+                    <br>
+                    <p-password
+                        id="password1"
+                        [(ngModel)]="password"
+                        placeholder="Contraseña"
+                        [toggleMask]="false"
+                        styleClass="w-full md:w-30rem mb-5"
+                        inputStyleClass="p-3 w-full"
+                        [feedback]="false">
+                    </p-password>
+
+                    <div class="flex align-items-center justify-content-between mb-5 gap-5">
+                        <div class="flex align-items-center">
+                            <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
+                            <label for="rememberme1">Recordar Usuario</label>
+                        </div>
+                    </div>
+                    <button pButton pRipple label="Ingresar" class="w-full p-3 text-xl" (click)="auth()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
