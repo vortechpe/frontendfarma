@@ -6,18 +6,31 @@
                     <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logofarmacia' : 'logofarmacia'}}.png" alt="Image" height="250" class="mb-1">
                     <!-- <div class="text-900 text-3xl font-medium mb-3">{{tittle}}</div> -->
                 </div>
+                
+                <form [formGroup]="objectForm" (ngSubmit)="auth()">
 
+                
                 <div>
-                    <input id="email1" type="text" [(ngModel)]="email" placeholder="Usuario" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
-
+                    <input id="email1" 
+                        type="text" 
+                        formControlName="email" 
+                        placeholder="Usuario" 
+                        pInputText 
+                        
+                        class="w-full md:w-30rem mb-5" 
+                        [ngClass]="{'ng-invalid':objectForm.controls['email'].invalid, 'ng-dirty': objectForm.controls['email'].touched}"
+                        style="padding:1rem">
+                    
+                   
                     <br>
                     <p-password
                         id="password1"
-                        [(ngModel)]="password"
+                        formControlName="password"
                         placeholder="Contraseña"
                         [toggleMask]="false"
                         styleClass="w-full md:w-30rem mb-5"
                         inputStyleClass="p-3 w-full"
+                        [ngClass]="{'ng-invalid':objectForm.controls['password'].invalid, 'ng-dirty': objectForm.controls['password'].touched}"
                         [feedback]="false">
                     </p-password>
 
@@ -27,10 +40,12 @@
                             <label for="rememberme1">Recordar Usuario</label>
                         </div>
                     </div>
-                    <button pButton pRipple label="Ingresar" class="w-full p-3 text-xl" (click)="auth()"></button>
+                    <button pButton pRipple label="Ingresar" class="w-full p-3 text-xl" ></button>
                 </div>
+            </form>
             </div>
         </div>
     </div>
 </div>
+<p-toast></p-toast>
 

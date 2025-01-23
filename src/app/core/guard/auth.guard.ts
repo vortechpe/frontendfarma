@@ -11,17 +11,13 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean | Observable<boolean> {
     const cookies = document.cookie;
-    debugger
     const token = this.cookieService.get('JwtToken'); // Reemplaza 'jwt' con el nombre de tu cookie
 
-    if (token) {
+    if (!token) {
       // Si el token existe, permite el acceso
-
-      return true;
-    } else {
-      // Si no existe, redirige al login
       this.router.navigate(['/auth/login']);
       return false;
     }
+    return true;
   }
 }

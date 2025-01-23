@@ -1,1 +1,125 @@
-<p>user-component</p>
+<p-toolbar styleClass="mb-6">
+    <ng-template pTemplate="left">
+        <p-button label="Nuevo" icon="pi pi-plus"  class="mr-2" (onClick)="create()" />
+    </ng-template>
+
+    <ng-template pTemplate="right">
+        <p-button label="Importar" icon="pi pi-upload" class="mr-2" (onClick)="exportCSV()" />
+        <p-button label="Export" icon="pi pi-upload" (onClick)="exportCSV()" />
+    </ng-template>
+</p-toolbar>
+
+<p-toast />
+<p-confirmDialog ></p-confirmDialog>    
+<p-table #dt [value]="data" [lazy]="true" [paginator]="true" 
+    [rows]="5" [totalRecords]="100" [rowsPerPageOptions]="[5, 10, 15]"
+    (onLazyLoad)="loadRolesLazy($event)">
+    <ng-template pTemplate="caption">
+        <div class="table-header flex justify-between items-center">
+            <h5 class="m-0">Manage Products</h5>
+            <input type="text" pInputText (input)="filterGlobal($event.target.value)" 
+                placeholder="Search..." class="ml-auto" />
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Id</th>
+            <th>Nombre completo</th>
+            <th>Email</th>
+            <th>Usuario</th>
+            <th>Teléfono</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-data>
+        <tr>
+            <td>{{data.id}}</td>
+            <td>{{data.nombre}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.userName}}</td>
+            <td>{{data.telefono}}</td>
+            <td>
+                <span [class]="'item-badge status-' + (data.stateUser ? 'habilitado' : 'deshabilitado')">
+                    {{data.stateUser | booleanStatus}}
+                </span>
+            </td>
+            <td>
+                <div class="flex">
+                    <button pButton pRipple icon="pi pi-pencil" pTooltip="Editar" class="p-button mr-2" (click)="getUser(data.id)"></button>
+                    <button pButton pRipple [icon]="data.stateUser ? 'pi pi-trash' : 'pi pi-check'" 
+                        pTooltip="Eliminar" [ngClass]="data.stateUser ? 'p-button-danger' : 'item-badge status-habilitado'" (click)="delete(data.id)">
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+
+<!--DIALOG-->
+<form [formGroup]="objectForm" (ngSubmit)="onCreate()">
+<p-dialog [(visible)]="objectDialog" [style]="{width: '450px'}" header="{{titleForm}}" [modal]="true" class="p-fluid">
+  
+    <ng-template pTemplate="content">
+      
+        <div class="field">
+          <input
+            type="text"
+            pInputText
+            id="nombre"
+            formControlName="nombre"
+            placeholder="Nombre"
+            [ngClass]="{'ng-invalid':objectForm.controls['nombre'].invalid, 'ng-dirty': objectForm.controls['nombre'].touched}"
+          />
+        </div>
+        <div class="field">
+            <input
+              type="text"
+              pInputText
+              id="email"
+              formControlName="email"
+              placeholder="Email"
+              [ngClass]="{'ng-invalid':objectForm.controls['email'].invalid, 'ng-dirty': objectForm.controls['email'].touched}"
+            />
+          </div>
+          <div class="field">
+            <input
+              type="text"
+              pInputText
+              id="telefono"
+              formControlName="telefono"
+              placeholder="Teléfono"
+              maxlength="9"
+              [ngClass]="{'ng-invalid':objectForm.controls['telefono'].invalid, 'ng-dirty': objectForm.controls['telefono'].touched}"
+            />
+          </div>
+          <div class="field">
+            <input
+              type="text"
+              pInputText
+              id="userName"
+              formControlName="userName"
+              placeholder="Usuario"
+              [ngClass]="{'ng-invalid':objectForm.controls['userName'].invalid, 'ng-dirty': objectForm.controls['userName'].touched}"
+            />
+          </div>
+          <div class="field">
+            <p-password
+             formControlName="password"
+             placeholder="Contraseña"
+             [feedback]="false"
+             [ngClass]="{'ng-invalid':objectForm.controls['password'].invalid, 'ng-dirty': objectForm.controls['password'].touched}"/>
+
+          </div>
+   
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="objectDialog=false"></button>
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text"></button>
+    </ng-template>
+
+</p-dialog>
+</form>

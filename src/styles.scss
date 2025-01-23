@@ -18,3 +18,23 @@ $gutter: 1rem; //for primeflex grid system
     background: none !important;
     box-shadow: none !important; /* Opcional, elimina sombras */
   }
+
+.pi-exclamation-triangle:before {
+    content: "\e922";
+    color: red;
+}
+.pi-info-circle:before {
+  content: "\e924";
+  color: var(--primary-color) ;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+  gap: 1rem; /* Espacio entre las columnas */
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}

@@ -4,25 +4,22 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-
-import { UserComponent } from './user.component';
-import { UserRoutingModule } from './user-routing.module';
-import { ToolbarModule } from 'primeng/toolbar'
-import { TableModule } from 'primeng/table'
-import { InputTextModule } from 'primeng/inputtext';
-import { BooleanStatusPipe } from 'src/app/core/pipes/boolean-status.pipe';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ToastModule } from 'primeng/toast';
-import { DialogModule } from 'primeng/dialog'
-import { CustomConfirmationService } from 'src/app/core/service/confirmation.service';
+import { PersonComponent } from './person.component';
+import { PersonRoutingModule } from './person-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToolbarModule } from 'primeng/toolbar';
+import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
+import { ToastModule } from 'primeng/toast';
 import { PasswordModule } from 'primeng/password';
-
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
     imports: [
+        PersonRoutingModule,
         CommonModule,
-        UserRoutingModule,
         ButtonModule,
         RippleModule,
         SplitButtonModule,
@@ -32,11 +29,11 @@ import { PasswordModule } from 'primeng/password';
         InputTextModule,
         TableModule,
         ConfirmDialogModule,
+        DropdownModule,
         DialogModule,
         ToastModule,
         PasswordModule
     ],
-    declarations: [UserComponent,BooleanStatusPipe],
-    providers:[CustomConfirmationService]
+    declarations: [PersonComponent]
 })
-export class UserModule { }
+export class PersonModule { }

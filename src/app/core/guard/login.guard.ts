@@ -14,17 +14,9 @@ export class LoginGuard implements CanActivate {
 
     // Si la cookie de autenticación existe y estamos intentando acceder al login, redirigir al Dashboard
     if (token) {
-      this.router.navigate(['/dashboard']); // Redirige al Dashboard
-      return false; // Previene el acceso al login
-    }
-
-    if (token) {
-      // Si el token existe y no estamos intentando ir al login, permite el acceso
-      return true;
-    } else {
-      // Si no existe, redirige al login
-      this.router.navigate(['/auth/login']);
-      return false;
-    }
+        this.router.navigate(['/dashboard']); // Redirige al Dashboard
+        return false; // Previene el acceso al login
+    } 
+    return true;
   }
 }

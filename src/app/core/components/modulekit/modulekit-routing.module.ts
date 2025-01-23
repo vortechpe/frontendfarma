@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
     imports: [RouterModule.forChild([
         { path: 'role', data: { breadcrumb: 'Role' }, loadChildren: () => import('./role/role.module').then(m => m.RoleModule) },
         { path: 'user', data: { breadcrumb: 'Usuarios' }, loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
+        { path: 'person', data: { breadcrumb: 'Personas' }, loadChildren: () => import('./person/person.module').then(m => m.PersonModule) },
     ])],
     exports: [RouterModule]
 })

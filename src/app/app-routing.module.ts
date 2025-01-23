@@ -16,11 +16,11 @@ import { LoginGuard } from './core/guard/login.guard';
             {
                 path: 'auth',
                 loadChildren: () => import('./core/components/auth/auth.module').then(m => m.AuthModule),
-                canActivate: [LoginGuard],
+                canActivate: [],
             },
             {
                 path: 'dashboard', component: AppLayoutComponent,
-                canActivate: [AuthGuard],
+                canActivate: [],
                 children: [
                     { path: 'module', loadChildren: () => import('./core/components/modulekit/modulekit.module').then(m => m.ModuleKitModule) }
                 ]

@@ -10,8 +10,8 @@ export class AuthService {
     private apiUrl = environment.apiUrl;
     constructor(private http: HttpClient) { }
 
-    auth(email: string, password: string): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}/Auth/login`, { email, password },{ withCredentials: true });
+    auth(data:{ email: string; password: string }): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl}/Auth/login`, data,{ withCredentials: true });
     }
     refreshToken(): Observable<any> {
         return this.http.post<any>(`${this.apiUrl}/Auth/refresh-token`, {}, { withCredentials: true });

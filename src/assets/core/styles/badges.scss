@@ -1,5 +1,6 @@
 .customer-badge,
 .product-badge,
+.item-badge,
 .order-badge {
     border-radius: var(--border-radius);
     padding: .25em .5rem;
@@ -8,7 +9,25 @@
     font-size: 12px;
     letter-spacing: .3px;
 }
-
+.item-badge{
+    &.status-deshabilitado{
+        background: #FFCDD2;
+        color: #C63737;
+    }
+    &.status-habilitado {
+        background: #009b40;
+        color: #ffffff;
+    }
+    &.status-Censado {
+        background: #009b40;
+        color: #ffffff;
+    }
+    &.status-SinCensar{
+        background: #FFCDD2;
+        color: #C63737;
+    }
+  }
+  
 .product-badge {
     &.status-instock {
         background: #C8E6C9;

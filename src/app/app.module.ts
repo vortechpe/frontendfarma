@@ -14,6 +14,9 @@ import { PhotoService } from './core/service/photo.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SpinnerComponent } from './core/shared/spinner.component';
 import { SpinnerModule } from './core/shared/spinner.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpErrorInterceptor } from './core/components/Interceptors/http.interceptor';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
@@ -21,7 +24,9 @@ import { SpinnerModule } from './core/shared/spinner.module';
     providers: [
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService
+        PhotoService, ProductService,
+        { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+        MessageService,ConfirmationService
     ],
     bootstrap: [AppComponent],
 })

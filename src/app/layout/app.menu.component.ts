@@ -19,6 +19,7 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     { label: 'Roles', icon: 'pi pi-fw pi-id-card', routerLink: ['/dashboard/module/role'] },
                     { label: 'Usuarios', icon: 'pi pi-fw pi-id-card', routerLink: ['/dashboard/module/user'] },
+                    { label: 'Personas', icon: 'pi pi-fw pi-id-card', routerLink: ['/dashboard/module/person'] },
                 ]
             }
         ]
